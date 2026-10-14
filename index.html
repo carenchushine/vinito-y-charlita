@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🍷 ¿Querés tomar un vinito y charlar conmigo? ❤️</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍷</text></svg>">
+
+  <!-- Retro Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- CRT Scanlines and Retro Overlay -->
+  <div class="crt-overlay"></div>
+  <div class="scanlines"></div>
+
+  <!-- Background Animated Hearts -->
+  <div id="hearts-bg" class="hearts-container"></div>
+
+  <!-- Sound Toggle Control -->
+  <button id="sound-toggle" class="pixel-sound-btn" title="Activar/Desactivar Sonido 8-bits" aria-label="Control de Sonido">
+    <span id="sound-icon">🔊</span>
+  </button>
+
+  <!-- MAIN RETRO CABINET -->
+  <main class="arcade-cabinet">
+    
+    <!-- ==============================================
+         ETAPA 1: LA PREGUNTA INICIAL
+         ============================================== -->
+    <section id="stage-question" class="stage active">
+      <div class="pixel-box main-dialog">
+        <div class="retro-badge red">❤️ MISIÓN ROMÁNTICA ❤️</div>
+        
+        <div class="pixel-art-wine-bar">
+          <span class="pixel-icon float-1">🍷</span>
+          <span class="pixel-icon pulse-heart">💖</span>
+          <span class="pixel-icon float-2">🍷</span>
+        </div>
+
+        <h1 class="pixel-title">
+          ¿Querés tomar un vinito y charlar conmigo?
+        </h1>
+
+        <p class="pixel-subtitle">
+          [ Elegí una opción para continuar ]
+        </p>
+
+        <!-- Dodge Message Bubble -->
+        <div id="dodge-feedback" class="dodge-bubble hidden">¡Ese botón no! 😉</div>
+
+        <!-- Buttons Arena -->
+        <div class="buttons-arena" id="arena">
+          <button id="btn-yes" class="pixel-btn btn-yes">
+            <span class="btn-heart">❤️</span> ¡SÍ! <span class="btn-heart">❤️</span>
+          </button>
+
+          <button id="btn-no" class="pixel-btn btn-no">
+            NO 💔
+          </button>
+        </div>
+
+        <div class="arcade-tip">
+          <span>* Tip de Leo: Solo hay una respuesta correcta *</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         ETAPA 2: LEO MATTIOLI Y CALENDARIO
+         ============================================== -->
+    <section id="stage-leo" class="stage hidden">
+      <div class="pixel-box leo-box">
+        <div class="retro-badge gold">🦁 ¡EL LEÓN SANTAFESINO APRUEBA! 🦁</div>
+
+        <div class="leo-hero">
+          <div class="leo-photo-frame">
+            <img src="assets/leo_mattioli.webp" alt="Leo Mattioli con una rosa roja" class="leo-photo">
+            <div class="sparkle sp1">✨</div>
+            <div class="sparkle sp2">🌹</div>
+            <div class="sparkle sp3">✨</div>
+          </div>
+          
+          <div class="leo-dialog-speech">
+            <p class="quote-text">
+              "«Si te vas... ¡no te vayas nada! Sabía que en tu corazón estaba el SÍ... Ahora organicemos este vinito.»"
+            </p>
+            <span class="quote-author">- Leo Mattioli 🌹</span>
+          </div>
+        </div>
+
+        <!-- Date & Place Selector -->
+        <form id="date-form" class="retro-form">
+          <div class="form-legend">📜 COORDENADAS DEL ENCUENTRO:</div>
+
+          <div class="form-row">
+            <label for="input-date">📅 ¿QUÉ DÍA? (FECHA):</label>
+            <input type="date" id="input-date" required class="pixel-input">
+          </div>
+
+          <div class="form-row">
+            <label for="input-time">⏰ ¿A QUÉ HORA?:</label>
+            <input type="time" id="input-time" required class="pixel-input" value="21:00">
+          </div>
+
+          <div class="form-row">
+            <label for="input-place">📍 ¿DÓNDE NOS VEMOS?:</label>
+            <input type="text" id="input-place" placeholder="Escribí un lugar o elegí abajo..." required class="pixel-input" autocomplete="off">
+            
+            <div class="chips-container">
+              <button type="button" class="chip" data-place="En un bodegón clásico con vino tinto y pastas">🍷 Bodegón con vinito</button>
+              <button type="button" class="chip" data-place="En un barcito íntimo y acogedor">🕯️ Bar acogedor</button>
+              <button type="button" class="chip" data-place="En una placita al atardecer con vinito">🌳 Placita al atardecer</button>
+              <button type="button" class="chip" data-place="En casa, yo cocino algo rico y descorchamos">🍝 Cena casera</button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="input-note">💌 MENSAJE ESPECIAL (OPCIONAL):</label>
+            <input type="text" id="input-note" placeholder="Ej: Llevo yo el vinito / Que suene Leo de fondo" class="pixel-input">
+          </div>
+
+          <button type="submit" id="btn-confirm" class="pixel-btn btn-confirm">
+            ✨ ¡CONFIRMAR CITA! 🍷
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         ETAPA 3: ¡AY AMOR! Y ENVÍO A WHATSAPP
+         ============================================== -->
+    <section id="stage-final" class="stage hidden">
+      <div class="pixel-box final-box">
+        <div class="retro-badge red-pulse">🔥 ¡NIVEL COMPLETADO! 🔥</div>
+
+        <!-- Big Retro ¡AY AMOR! -->
+        <div class="ay-amor-container">
+          <div class="ay-amor-glitch" data-text="¡AY AMOR!">¡AY AMOR!</div>
+          <div class="rose-garland">🌹 🍷 🌹 🍷 🌹</div>
+        </div>
+
+        <!-- Cita Summary Card -->
+        <div class="ticket-box">
+          <div class="ticket-header">🎟️ PASE OFICIAL PARA LA CITA</div>
+          <div class="ticket-line"><span>📅 FECHA:</span> <strong id="sum-date">--/--/----</strong></div>
+          <div class="ticket-line"><span>⏰ HORA:</span> <strong id="sum-time">--:--</strong></div>
+          <div class="ticket-line"><span>📍 LUGAR:</span> <strong id="sum-place">---</strong></div>
+          <div class="ticket-line" id="sum-note-line"><span>💌 NOTA:</span> <strong id="sum-note">---</strong></div>
+        </div>
+
+        <div class="whatsapp-section">
+          <p class="wa-description">
+            Avisando al celular... ¡Hacé click abajo para enviar la confirmación por WhatsApp!
+          </p>
+
+          <a id="btn-whatsapp" href="#" target="_blank" rel="noopener noreferrer" class="pixel-btn btn-whatsapp-action">
+            <span class="icon-wa">📲</span> ENVIAR POR WHATSAPP
+          </a>
+
+          <button type="button" id="btn-copy" class="pixel-btn btn-copy">
+            📋 Copiar mensaje al portapapeles
+          </button>
+        </div>
+
+        <div class="final-quote">
+          <p>"Porque este amor es tan grande que no cabe en el pecho..."</p>
+          <span>- Con la bendición de Leo Mattioli 🦁</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
